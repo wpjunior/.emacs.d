@@ -1,56 +1,60 @@
-(add-to-list 'load-path "~/.emacs.d")
+(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH") ))
 
+(add-to-list 'load-path "~/.emacs.d")
 ;; Setup packages
 (require 'setup-package)
 
-;; Install extensions if they're missing
-(defun init--install-packages ()
-  (packages-install
-   '(ac-js2
-     ag
-     column-marker
-     cython-mode
-     debian-changelog-mode
-     dockerfile-mode
-     dropdown-list
-     enh-ruby-mode
-     erlang
-     es-mode
-     expand-region
-     feature-mode
-     find-file-in-repository
-     flycheck
-     git-blame
-     gitignore-mode
-     go-mode
-     grizzl
-     haml-mode
-     helm
-     jedi
-     auto-complete
-     jinja2-mode
-     json-mode
-     less-css-mode
-     lua-mode
-     magit
-     git-rebase-mode
-     git-commit-mode
-     markdown-mode
-     multiple-cursors
-     php-mode
-     projectile
-     py-autopep8
-     pyflakes
-     python-environment
-     python-mode
-     rainbow-mode
-     ruby-mode
-     js2-mode
-     smartparens
-     solarized-theme
-     web-mode
-     yasnippet)))
+;; setup modes
+(package-required 'cython-mode)
+(package-required 'debian-changelog-mode)
+(package-required 'dockerfile-mode)
+(package-required 'es-mode)
+(package-required 'feature-mode)
+(package-required 'git-commit-mode)
+(package-required 'git-rebase-mode)
+(package-required 'gitignore-mode)
+(package-required 'go-mode)
+(package-required 'haml-mode)
+(package-required 'jinja2-mode)
+(package-required 'js2-mode)
+(package-required 'json-mode)
+(package-required 'less-css-mode)
+(package-required 'lua-mode)
+(package-required 'markdown-mode)
+(package-required 'php-mode)
+(package-required 'python-mode)
+(package-required 'rainbow-mode)
+(package-required 'ruby-mode)
+(package-required 'web-mode)
+(package-required 'erlang)
 
+;; tools
+(package-required 'ac-js2)
+(package-required 'ag)
+(package-required 'auto-complete)
+(package-required 'column-marker)
+(package-required 'dropdown-list)
+(package-required 'enh-ruby-mode)
+(package-required 'expand-region)
+(package-required 'find-file-in-repository)
+(package-required 'flycheck)
+(package-required 'flycheck-pyflakes)
+(package-required 'git-blame)
+(package-required 'grizzl)
+(package-required 'helm)
+(package-required 'jedi)
+(package-required 'magit)
+(package-required 'maxframe)
+(package-required 'multiple-cursors)
+(package-required 'projectile)
+(package-required 'py-autopep8)
+(package-required 'pyflakes)
+(package-required 'python-environment)
+(package-required 'smartparens)
+(package-required 'yasnippet)
+
+;; theme
+(package-required 'solarized-theme)
 
 (setq user-mail-address "wilsonpjunior@gmail.com")
 (column-number-mode 0)
@@ -71,7 +75,6 @@
 
 ;; Mac specific stuff
 (when (eq system-type 'darwin)
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (setq mac-option-modifier 'alt)
   (setq mac-command-modifier 'meta)
   ;; sets fn-delete to be right-delete
@@ -269,12 +272,11 @@
 (setq projectile-completion-system 'grizzl)
 (smartparens-global-mode)
 
-(color-theme-initialize)
-(require 'solarized-dark-theme)
-
 ;; expand region plugin
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+(require 'solarized-dark-theme)
 
 (maximize-frame)
 (server-mode)

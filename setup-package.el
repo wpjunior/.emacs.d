@@ -1,5 +1,4 @@
 (require 'package)
-
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '
@@ -10,15 +9,7 @@
 (unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
   (package-refresh-contents))
 
-(defun packages-install (packages)
-  (--each packages
-    (when (not (package-installed-p it))
-      (package-install it)))
-  (delete-other-windows))
-
-;;; On-demand installation of packages
-
-(defun require-package (package &optional min-version no-refresh)
+(defun package-required (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
 If NO-REFRESH is non-nil, the available package lists will not be
 re-downloaded in order to locate PACKAGE."
@@ -28,6 +19,7 @@ re-downloaded in order to locate PACKAGE."
         (package-install package)
       (progn
         (package-refresh-contents)
-        (require-package package min-version t)))))
+        (package-required package min-version t)))))
+
 
 (provide 'setup-package)
