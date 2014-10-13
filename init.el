@@ -209,10 +209,6 @@
 
 (setq feature-default-language "pt")
 
-;; point to cucumber languages.yml or gherkin i18n.yml to use
-;; exactly the same localization your cucumber uses
-(setq feature-default-i18n-file "~/.emacs.d/i18n.yml")
-
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
@@ -283,7 +279,7 @@
 
 (require 'move-text)
 (global-set-key [M-p] 'move-text-up)
-(global-set-key [M-n] 'move-text-down))
+(global-set-key [M-n] 'move-text-down)
 
 (maximize-frame)
 (server-mode)
