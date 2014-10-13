@@ -80,4 +80,5 @@ Extra Key Bindings
 | Option-g           | git                                   |
 | Option-d           | git-blame                             |
 | C-=                | Expand region                         |
-
+| M-p                | Move text or region up.               |
+| M-n                | Move text or region down.             |

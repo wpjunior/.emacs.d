@@ -21,5 +21,4 @@ re-downloaded in order to locate PACKAGE."
         (package-refresh-contents)
         (package-required package min-version t)))))
 
-
 (provide 'setup-package)

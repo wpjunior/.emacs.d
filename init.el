@@ -45,6 +45,7 @@
 (package-required 'jedi)
 (package-required 'magit)
 (package-required 'maxframe)
+(package-required 'move-text)
 (package-required 'multiple-cursors)
 (package-required 'projectile)
 (package-required 'py-autopep8)
@@ -199,8 +200,8 @@
   (interactive)
   (scroll-down 1))
 
-(global-set-key [(meta n)] 'gcm-scroll-down)
-(global-set-key [(meta p)] 'gcm-scroll-up)
+;; (global-set-key [(meta n)] 'gcm-scroll-down)
+;; (global-set-key [(meta p)] 'gcm-scroll-up)
 
 (global-set-key (kbd "A-SPC") 'projectile-find-file)
 (global-set-key (kbd "A-S-SPC") 'projectile-ag)
@@ -279,6 +280,10 @@
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (require 'solarized-dark-theme)
+
+(require 'move-text)
+(global-set-key [M-p] 'move-text-up)
+(global-set-key [M-n] 'move-text-down))
 
 (maximize-frame)
 (server-mode)
