@@ -40,7 +40,6 @@
 (package-required 'find-file-in-repository)
 (package-required 'flycheck)
 (package-required 'flycheck-pyflakes)
-(package-required 'git-blame)
 (package-required 'grizzl)
 (package-required 'helm)
 (package-required 'jedi)
@@ -54,6 +53,9 @@
 (package-required 'python-environment)
 (package-required 'smartparens)
 (package-required 'yasnippet)
+
+;; post tools
+(package-required 'git-blame)
 
 ;; theme
 (package-required 'solarized-theme)
