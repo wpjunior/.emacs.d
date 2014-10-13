@@ -270,6 +270,8 @@
 (projectile-global-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq projectile-completion-system 'grizzl)
+(setq ag-highlight-search t)
+(setq ag-reuse-window 't)
 (smartparens-global-mode)
 
 ;; expand region plugin
