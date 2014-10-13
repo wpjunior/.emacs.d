@@ -8,6 +8,7 @@
 (package-required 'cython-mode)
 (package-required 'debian-changelog-mode)
 (package-required 'dockerfile-mode)
+(package-required 'erlang)
 (package-required 'es-mode)
 (package-required 'feature-mode)
 (package-required 'git-commit-mode)
@@ -22,11 +23,11 @@
 (package-required 'lua-mode)
 (package-required 'markdown-mode)
 (package-required 'php-mode)
+(package-required 'puppet-mode)
 (package-required 'python-mode)
 (package-required 'rainbow-mode)
 (package-required 'ruby-mode)
 (package-required 'web-mode)
-(package-required 'erlang)
 
 ;; tools
 (package-required 'ac-js2)
@@ -278,8 +279,8 @@
 (require 'solarized-dark-theme)
 
 (require 'move-text)
-(global-set-key [M-p] 'move-text-up)
-(global-set-key [M-n] 'move-text-down)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
 
 (maximize-frame)
 (server-mode)
