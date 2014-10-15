@@ -238,6 +238,7 @@
 (setq flycheck-highlighting-mode 'lines)
 
 (require 'py-autopep8)
+(setq py-autopep8-options '("--max-line-length=119"))
 (add-hook 'before-save-hook 'py-autopep8-before-save)
 
 (defun git () (interactive) (magit-status "."))

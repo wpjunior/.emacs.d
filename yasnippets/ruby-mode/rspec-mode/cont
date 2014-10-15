@@ -1,0 +1,6 @@
+#name: context "" do ... end
+# key: cont
+# --
+context '${1:context name}' do
+  $0
+end
