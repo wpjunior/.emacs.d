@@ -22,7 +22,6 @@
 (package-required 'less-css-mode)
 (package-required 'lua-mode)
 (package-required 'markdown-mode)
-(package-required 'php-mode)
 (package-required 'puppet-mode)
 (package-required 'python-mode)
 (package-required 'rainbow-mode)
@@ -147,7 +146,6 @@
   (message (concat "Saved to:  " (buffer-name) ".pdf"))
   )
 
-(require 'php-mode)
 (require 'lua-mode)
 
 ;; Whitespaces
@@ -205,6 +203,7 @@
 
 ;; (global-set-key [(meta n)] 'gcm-scroll-down)
 ;; (global-set-key [(meta p)] 'gcm-scroll-up)
+
 
 (global-set-key (kbd "A-SPC") 'projectile-find-file)
 (global-set-key (kbd "A-S-SPC") 'projectile-ag)
@@ -270,16 +269,33 @@
 ;; projectile to search fast mode file
 (projectile-global-mode)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook 'hs-minor-mode)
 (setq projectile-completion-system 'grizzl)
 (setq ag-highlight-search t)
 (setq ag-reuse-window 't)
 (smartparens-global-mode)
 
+;; ruby configuration
+(setq ruby-deep-indent-paren nil)
+(setq enh-ruby-deep-indent-paren nil)
+
+(load-library "hideshow")
+(global-set-key (kbd "A-h") 'toggle-hiding)
+(global-set-key (kbd "A-s") 'toggle-selective-display)
+(add-hook 'c-mode-common-hook   'hs-minor-mode)
+(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+(add-hook 'java-mode-hook       'hs-minor-mode)
+(add-hook 'lisp-mode-hook       'hs-minor-mode)
+(add-hook 'perl-mode-hook       'hs-minor-mode)
+(add-hook 'python-mode-hook     'hs-minor-mode)
+(add-hook 'js2-mode-hook        'hs-minor-mode)
+(add-hook 'sh-mode-hook         'hs-minor-mode)
+
 ;; expand region plugin
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(require 'solarized-dark-theme)
+(require 'solarized-light-theme)
 
 (require 'move-text)
 (global-set-key (kbd "M-p") 'move-text-up)
