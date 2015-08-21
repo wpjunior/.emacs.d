@@ -52,6 +52,13 @@
 (package-required 'python-environment)
 (package-required 'smartparens)
 (package-required 'yasnippet)
+(package-required 'git-gutter)
+
+;; If you enable global minor mode
+(global-git-gutter-mode t)
+
+;; If you would like to use git-gutter.el and linum-mode
+(git-gutter:linum-setup)
 
 ;; post tools
 (package-required 'git-blame)
@@ -75,6 +82,9 @@
 
 ;; delete trailing whitespaces before saving
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; auto revert files
+(global-auto-revert-mode t)
 
 ;; Mac specific stuff
 (when (eq system-type 'darwin)
@@ -295,7 +305,7 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(require 'solarized-light-theme)
+(require 'solarized-dark-theme)
 
 (require 'move-text)
 (global-set-key (kbd "M-p") 'move-text-up)
