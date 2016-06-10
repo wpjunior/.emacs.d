@@ -11,9 +11,6 @@
 (package-required 'erlang)
 (package-required 'es-mode)
 (package-required 'feature-mode)
-(package-required 'git-commit-mode)
-(package-required 'git-rebase-mode)
-(package-required 'gitignore-mode)
 (package-required 'go-mode)
 (package-required 'haml-mode)
 (package-required 'jinja2-mode)
@@ -42,7 +39,6 @@
 (package-required 'grizzl)
 (package-required 'helm)
 (package-required 'jedi)
-(package-required 'magit)
 (package-required 'maxframe)
 (package-required 'move-text)
 (package-required 'multiple-cursors)
@@ -79,9 +75,6 @@
 
 ;; No f*cking bell
 (setq ring-bell-function 'ignore)
-
-;; delete trailing whitespaces before saving
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; auto revert files
 (global-auto-revert-mode t)
@@ -250,12 +243,6 @@
 (setq py-autopep8-options '("--max-line-length=119"))
 (add-hook 'before-save-hook 'py-autopep8-before-save)
 
-(defun git () (interactive) (magit-status "."))
-(defun git-blame () (interactive) (mo-git-blame-current))
-
-(global-set-key (kbd "A-g") 'git)
-(global-set-key (kbd "A-d") 'git-blame)
-
 (add-hook 'python-mode-hook 'jedi:setup)
 
 (defun web-mode-hook ()
@@ -301,6 +288,8 @@
 (add-hook 'js2-mode-hook        'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
 
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 ;; expand region plugin
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -315,5 +304,4 @@
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
 
-(maximize-frame)
 (server-mode)
