@@ -1,4 +1,15 @@
-(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH") ))
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+(setenv "PATH" (concat "$HOME/.go/bin:/usr/local/bin:" (getenv "PATH") ))
+(setenv "GOPATH" "/Users/wilson.junior/.go")
+(setenv "GOROOT" "/usr/local/Cellar/go/1.10/libexec")
+
+(add-to-list 'exec-path "~/.go/bin")
+(add-to-list 'exec-path "/usr/local/bin")
 
 (add-to-list 'load-path "~/.emacs.d")
 ;; Setup packages
@@ -12,6 +23,7 @@
 (package-required 'es-mode)
 (package-required 'feature-mode)
 (package-required 'go-mode)
+(package-required 'go-autocomplete)
 (package-required 'haml-mode)
 (package-required 'jinja2-mode)
 (package-required 'js2-mode)
@@ -38,7 +50,7 @@
 (package-required 'flycheck-pyflakes)
 (package-required 'grizzl)
 (package-required 'helm)
-(package-required 'jedi)
+;;(package-required 'jedi)
 (package-required 'maxframe)
 (package-required 'move-text)
 (package-required 'multiple-cursors)
@@ -56,8 +68,6 @@
 ;; If you would like to use git-gutter.el and linum-mode
 (git-gutter:linum-setup)
 
-;; post tools
-(package-required 'git-blame)
 
 ;; theme
 (package-required 'solarized-theme)
@@ -169,6 +179,7 @@
 
 ;; js2
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(setq js2-basic-offset 2)
 
 ;; show line numbers
 (require 'linum)
@@ -239,9 +250,9 @@
 
 (setq flycheck-highlighting-mode 'lines)
 
-(require 'py-autopep8)
-(setq py-autopep8-options '("--max-line-length=119"))
-(add-hook 'before-save-hook 'py-autopep8-before-save)
+;;(require 'py-autopep8)
+;;(setq py-autopep8-options '("--max-line-length=119"))
+;;(add-hook 'before-save-hook 'py-autopep8-before-save)
 
 (add-hook 'python-mode-hook 'jedi:setup)
 
@@ -260,12 +271,15 @@
 ;; autocomplete setup
 (require 'auto-complete-config)
 
-(ac-set-trigger-key "TAB")
+;;(ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
+
+(ac-config-default)
+
 
 ;; projectile to search fast mode file
 (projectile-global-mode)
-(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook 'global-flycheck-mode)
 (add-hook 'after-init-hook 'hs-minor-mode)
 (setq projectile-completion-system 'grizzl)
 (setq ag-highlight-search t)
@@ -290,6 +304,21 @@
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
+
+(defun my-go-mode-hook ()
+  ; Use goimports instead of go-fmt
+  (auto-complete-mode 1)
+  (setq gofmt-command "goimports")
+  ; Call Gofmt before saving
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+  (local-set-key (kbd "M-.") 'godef-jump))
+
+(with-eval-after-load 'go-mode
+  (require 'go-autocomplete))
+
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+
 ;; expand region plugin
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -305,3 +334,22 @@
 (global-unset-key [(control x)(control z)])
 
 (server-mode)
+(global-flycheck-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(js-indent-level 2)
+ '(package-selected-packages
+   (quote
+    (fish-mode yaml-tomato yaml-mode editorconfig solarized-theme yasnippet web-mode smartparens rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe markdown-mode lua-mode less-css-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dropdown-list dockerfile-mode debian-changelog-mode cython-mode column-marker ag ac-js2))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
