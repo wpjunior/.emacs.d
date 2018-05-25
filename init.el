@@ -27,6 +27,7 @@
 (package-required 'haml-mode)
 (package-required 'jinja2-mode)
 (package-required 'js2-mode)
+(package-required 'rjsx-mode)
 (package-required 'json-mode)
 (package-required 'less-css-mode)
 (package-required 'lua-mode)
@@ -179,6 +180,7 @@
 
 ;; js2
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
 (setq js2-basic-offset 2)
 
 ;; show line numbers
