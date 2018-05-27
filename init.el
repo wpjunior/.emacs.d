@@ -4,11 +4,10 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(setenv "PATH" (concat "$HOME/.go/bin:/usr/local/bin:" (getenv "PATH") ))
-(setenv "GOPATH" "/Users/wilson.junior/.go")
-(setenv "GOROOT" "/usr/local/Cellar/go/1.10/libexec")
+(setenv "PATH" (concat "$HOME/go/bin:/usr/local/bin:" (getenv "PATH") ))
+(setenv "GOPATH" "/Users/wilson/go")
 
-(add-to-list 'exec-path "~/.go/bin")
+(add-to-list 'exec-path "~/go/bin")
 (add-to-list 'exec-path "/usr/local/bin")
 
 (add-to-list 'load-path "~/.emacs.d")
@@ -42,8 +41,8 @@
 (package-required 'ac-js2)
 (package-required 'ag)
 (package-required 'auto-complete)
-(package-required 'column-marker)
-(package-required 'dropdown-list)
+;;(package-required 'column-marker)
+;;(package-required 'dropdown-list)
 (package-required 'enh-ruby-mode)
 (package-required 'expand-region)
 (package-required 'find-file-in-repository)
@@ -71,7 +70,8 @@
 
 
 ;; theme
-(package-required 'solarized-theme)
+;; (package-required 'solarized-theme)
+(load-theme 'material t)
 
 (setq user-mail-address "wilsonpjunior@gmail.com")
 (column-number-mode 0)
@@ -244,11 +244,11 @@
 ;; Show column number in the mode line.
 (column-number-mode 1)
 
-(require 'column-marker)
-(set-face-background 'column-marker-1 "red")
-(add-hook 'python-mode-hook
-          (lambda () (interactive)
-            (column-marker-1 fill-column)))
+;; (require 'column-marker)
+;; (set-face-background 'column-marker-1 "red")
+;; (add-hook 'python-mode-hook
+;;           (lambda () (interactive)
+;;             (column-marker-1 fill-column)))
 
 (setq flycheck-highlighting-mode 'lines)
 
@@ -325,7 +325,7 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(require 'solarized-dark-theme)
+;;(require 'solarized-dark-theme)
 
 (require 'move-text)
 (global-set-key (kbd "M-p") 'move-text-up)
@@ -344,11 +344,11 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (fish-mode yaml-tomato yaml-mode editorconfig solarized-theme yasnippet web-mode smartparens rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe markdown-mode lua-mode less-css-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dropdown-list dockerfile-mode debian-changelog-mode cython-mode column-marker ag ac-js2))))
+    (material-theme fish-mode yaml-tomato yaml-mode editorconfig solarized-theme yasnippet web-mode smartparens rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe markdown-mode lua-mode less-css-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dropdown-list dockerfile-mode debian-changelog-mode cython-mode column-marker ag ac-js2))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
