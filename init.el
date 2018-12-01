@@ -5,7 +5,7 @@
 (package-initialize)
 
 (setenv "PATH" (concat "$HOME/go/bin:/usr/local/bin:" (getenv "PATH") ))
-(setenv "GOPATH" "/Users/wilson/go")
+(setenv "GOPATH" "/home/wilson/go")
 
 (add-to-list 'exec-path "~/go/bin")
 (add-to-list 'exec-path "/usr/local/bin")
@@ -15,18 +15,18 @@
 (require 'setup-package)
 
 ;; setup modes
-(package-required 'cython-mode)
-(package-required 'debian-changelog-mode)
-(package-required 'dockerfile-mode)
-(package-required 'erlang)
-(package-required 'es-mode)
-(package-required 'feature-mode)
+;; (package-required 'cython-mode)
+;; (package-required 'debian-changelog-mode)
+;; (package-required 'dockerfile-mode)
+;; (package-required 'erlang)
+;; (package-required 'es-mode)
+;; (package-required 'feature-mode)
 (package-required 'go-mode)
 (package-required 'go-autocomplete)
 (package-required 'haml-mode)
 (package-required 'jinja2-mode)
-(package-required 'js2-mode)
-(package-required 'rjsx-mode)
+;; (package-required 'js2-mode)
+;; (package-required 'rjsx-mode)
 (package-required 'json-mode)
 (package-required 'less-css-mode)
 (package-required 'lua-mode)
@@ -61,12 +61,28 @@
 (package-required 'smartparens)
 (package-required 'yasnippet)
 (package-required 'git-gutter)
+(package-required 'use-package)
+
+
+(setq default-frame-alist '((undecorated . t)))
+
+(setq-default mode-line-format
+       (list ""
+        'mode-line-modified
+        'mode-line-frame-identification
+        'mode-line-buffer-identification
+        ;; Note that this is evaluated while making the list.
+        ;; It makes a mode line construct which is just a string.
+        'default-directory
+        '(line-number-mode " L%l")
+        '(column-number-mode " C%c")
+        ))
 
 ;; If you enable global minor mode
 (global-git-gutter-mode t)
 
 ;; If you would like to use git-gutter.el and linum-mode
-(git-gutter:linum-setup)
+;;(git-gutter:linum-setup)
 
 
 ;; theme
@@ -89,6 +105,8 @@
 
 ;; auto revert files
 (global-auto-revert-mode t)
+(menu-bar-mode 0)
+(blink-cursor-mode 0)
 
 ;; Mac specific stuff
 (when (eq system-type 'darwin)
@@ -148,17 +166,17 @@
 (global-set-key "\M-s\M-s" 'duplicate)
 
 ;; print code in .pdf
-(defun print-to-pdf ()
-  (interactive)
-  (ps-spool-buffer-with-faces)
-  (switch-to-buffer "*PostScript*")
-  (write-file "/tmp/tmp.ps")
-  (kill-buffer "tmp.ps")
-  (setq cmd (concat "ps2pdf14 /tmp/tmp.ps " (buffer-name) ".pdf"))
-  (shell-command cmd)
-  (shell-command "rm /tmp/tmp.ps")
-  (message (concat "Saved to:  " (buffer-name) ".pdf"))
-  )
+;; (defun print-to-pdf ()
+;;   (interactive)
+;;   (ps-spool-buffer-with-faces)
+;;   (switch-to-buffer "*PostScript*")
+;;   (write-file "/tmp/tmp.ps")
+;;   (kill-buffer "tmp.ps")
+;;   (setq cmd (concat "ps2pdf14 /tmp/tmp.ps " (buffer-name) ".pdf"))
+;;   (shell-command cmd)
+;;   (shell-command "rm /tmp/tmp.ps")
+;;   (message (concat "Saved to:  " (buffer-name) ".pdf"))
+;;   )
 
 (require 'lua-mode)
 
@@ -184,8 +202,8 @@
 (setq js2-basic-offset 2)
 
 ;; show line numbers
-(require 'linum)
-(global-linum-mode 1)
+;;(require 'linum)
+;;(global-linum-mode 1)
 
 ;; scroll smoothly
 (setq scroll-conservatively 10000)
@@ -194,6 +212,7 @@
 
 ;; spaces instead of tabs
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; better use the default C-x *left* and C-x *right*
 (global-set-key (kbd "A-n") 'next-buffer)
@@ -221,9 +240,9 @@
 ;; (global-set-key [(meta p)] 'gcm-scroll-up)
 
 
-(global-set-key (kbd "A-SPC") 'projectile-find-file)
-(global-set-key (kbd "A-S-SPC") 'projectile-ag)
-(global-set-key (kbd "A-m") 'mc/mark-next-like-this)
+(global-set-key (kbd "s-SPC") 'projectile-find-file)
+(global-set-key (kbd "s-S-SPC") 'projectile-ag)
+(global-set-key (kbd "s-m") 'mc/mark-next-like-this)
 
 (setq feature-default-language "pt")
 
@@ -313,7 +332,7 @@
   (setq gofmt-command "goimports")
   ; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
-  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+  ;;(load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
   (local-set-key (kbd "M-.") 'godef-jump))
 
 (with-eval-after-load 'go-mode
@@ -335,23 +354,68 @@
 (global-unset-key [(control z)])
 (global-unset-key [(control x)(control z)])
 
+;; remove trailing whitespace after saving
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; typescript
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+;; (add-hook 'before-save-hook 'tide-format-before-save)
+
+;;(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
 (server-mode)
 (global-flycheck-mode)
+;;(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+;;  '(custom-safe-themes
+;;    (quote
+;;     ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+;;  '(js-indent-level 2)
+;;  '(package-selected-packages
+;;    (quote
+;;     (material-theme fish-mode yaml-tomato yaml-mode editorconfig solarized-theme yasnippet web-mode smartparens rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe markdown-mode lua-mode less-css-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dropdown-list dockerfile-mode debian-changelog-mode cython-mode column-marker ag ac-js2))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" "732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
- '(js-indent-level 2)
+    ("0e8bac1e87493f6954faf5a62e1356ec9365bd5c33398af3e83cfdf662ad955f" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (material-theme fish-mode yaml-tomato yaml-mode editorconfig solarized-theme yasnippet web-mode smartparens rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe markdown-mode lua-mode less-css-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dropdown-list dockerfile-mode debian-changelog-mode cython-mode column-marker ag ac-js2))))
+    (snazzy-theme yaml-mode hackernews all-the-icons-dired git-commit git-blamed d-mode yasnippet-snippets tide yasnippet web-mode smartparens rjsx-mode rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe material-theme markdown-mode lua-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dockerfile-mode debian-changelog-mode cython-mode ag ac-js2)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 108 :width normal)))))
