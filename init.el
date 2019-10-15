@@ -13,6 +13,8 @@
 (add-to-list 'load-path "~/.emacs.d")
 ;; Setup packages
 (require 'setup-package)
+(require 'iso-transl)
+
 
 ;; setup modes
 ;; (package-required 'cython-mode)
@@ -62,6 +64,7 @@
 (package-required 'yasnippet)
 (package-required 'git-gutter)
 (package-required 'use-package)
+(package-required 'material-theme)
 
 
 (setq default-frame-alist '((undecorated . t)))
