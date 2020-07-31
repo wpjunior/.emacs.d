@@ -52,7 +52,7 @@
 (package-required 'flycheck-pyflakes)
 (package-required 'grizzl)
 (package-required 'helm)
-;;(package-required 'jedi)
+(package-required 'jedi)
 (package-required 'maxframe)
 (package-required 'move-text)
 (package-required 'multiple-cursors)
@@ -278,7 +278,7 @@
 ;;(setq py-autopep8-options '("--max-line-length=119"))
 ;;(add-hook 'before-save-hook 'py-autopep8-before-save)
 
-(add-hook 'python-mode-hook 'jedi:setup)
+;;(add-hook 'python-mode-hook 'jedi:setup)
 
 (defun web-mode-hook ()
   "Hooks for web mode."
@@ -413,7 +413,7 @@
     ("0e8bac1e87493f6954faf5a62e1356ec9365bd5c33398af3e83cfdf662ad955f" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (snazzy-theme yaml-mode hackernews all-the-icons-dired git-commit git-blamed d-mode yasnippet-snippets tide yasnippet web-mode smartparens rjsx-mode rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe material-theme markdown-mode lua-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dockerfile-mode debian-changelog-mode cython-mode ag ac-js2)))
+    (terraform-mode protobuf-mode snazzy-theme yaml-mode hackernews all-the-icons-dired git-commit git-blamed d-mode yasnippet-snippets tide yasnippet web-mode smartparens rjsx-mode rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe material-theme markdown-mode lua-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dockerfile-mode debian-changelog-mode cython-mode ag ac-js2)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
