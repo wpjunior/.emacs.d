@@ -24,7 +24,7 @@
 ;; (package-required 'es-mode)
 ;; (package-required 'feature-mode)
 (package-required 'go-mode)
-(package-required 'go-autocomplete)
+;;(package-required 'go-autocomplete)
 (package-required 'haml-mode)
 (package-required 'jinja2-mode)
 ;; (package-required 'js2-mode)
@@ -58,7 +58,7 @@
 (package-required 'multiple-cursors)
 (package-required 'projectile)
 (package-required 'py-autopep8)
-(package-required 'pyflakes)
+;;(package-required 'pyflakes)
 (package-required 'python-environment)
 (package-required 'smartparens)
 (package-required 'yasnippet)
@@ -338,8 +338,8 @@
   ;;(load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
   (local-set-key (kbd "M-.") 'godef-jump))
 
-(with-eval-after-load 'go-mode
-  (require 'go-autocomplete))
+;;(with-eval-after-load 'go-mode
+;;  (require 'go-autocomplete))
 
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
@@ -394,7 +394,7 @@
 ;;  '(js-indent-level 2)
 ;;  '(package-selected-packages
 ;;    (quote
-;;     (material-theme fish-mode yaml-tomato yaml-mode editorconfig solarized-theme yasnippet web-mode smartparens rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe markdown-mode lua-mode less-css-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dropdown-list dockerfile-mode debian-changelog-mode cython-mode column-marker ag ac-js2))))
+;;     (material-theme fish-mode yaml-tomato yaml-mode editorconfig solarized-theme yasnippet web-mode smartparens rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe markdown-mode lua-mode less-css-mode json-mode jinja2-mode helm haml-mode grizzl go-mode flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dropdown-list dockerfile-mode debian-changelog-mode cython-mode column-marker ag ac-js2))))
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -413,7 +413,7 @@
     ("0e8bac1e87493f6954faf5a62e1356ec9365bd5c33398af3e83cfdf662ad955f" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
  '(package-selected-packages
    (quote
-    (terraform-mode protobuf-mode snazzy-theme yaml-mode hackernews all-the-icons-dired git-commit git-blamed d-mode yasnippet-snippets tide yasnippet web-mode smartparens rjsx-mode rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe material-theme markdown-mode lua-mode json-mode jinja2-mode helm haml-mode grizzl go-mode go-autocomplete git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dockerfile-mode debian-changelog-mode cython-mode ag ac-js2)))
+    (terraform-mode protobuf-mode snazzy-theme yaml-mode hackernews all-the-icons-dired git-commit git-blamed d-mode yasnippet-snippets tide yasnippet web-mode smartparens rjsx-mode rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe material-theme markdown-mode lua-mode json-mode jinja2-mode helm haml-mode grizzl go-mode git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dockerfile-mode debian-changelog-mode cython-mode ag ac-js2)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
