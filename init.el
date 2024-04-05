@@ -67,7 +67,7 @@
 (package-required 'material-theme)
 
 
-(setq default-frame-alist '((undecorated . t)))
+;;(setq default-frame-alist '((undecorated . t)))
 
 (setq-default mode-line-format
        (list ""
@@ -406,19 +406,44 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   (vector "#ffffff" "#f36c60" "#8bc34a" "#fff59d" "#4dd0e1" "#b39ddb" "#81d4fa" "#263238"))
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(custom-safe-themes
-   (quote
-    ("0e8bac1e87493f6954faf5a62e1356ec9365bd5c33398af3e83cfdf662ad955f" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
+   '("7922b14d8971cce37ddb5e487dbc18da5444c47f766178e5a4e72f90437c0711" "0e8bac1e87493f6954faf5a62e1356ec9365bd5c33398af3e83cfdf662ad955f" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default))
+ '(fci-rule-color "#37474f")
+ '(hl-sexp-background-color "#1c1f26")
  '(package-selected-packages
-   (quote
-    (terraform-mode protobuf-mode snazzy-theme yaml-mode hackernews all-the-icons-dired git-commit git-blamed d-mode yasnippet-snippets tide yasnippet web-mode smartparens rjsx-mode rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe material-theme markdown-mode lua-mode json-mode jinja2-mode helm haml-mode grizzl go-mode git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dockerfile-mode debian-changelog-mode cython-mode ag ac-js2)))
+   '(terraform-mode protobuf-mode snazzy-theme yaml-mode hackernews all-the-icons-dired git-commit git-blamed d-mode yasnippet-snippets tide yasnippet web-mode smartparens rjsx-mode rainbow-mode python-mode python-environment pyflakes py-autopep8 puppet-mode projectile multiple-cursors move-text maxframe material-theme markdown-mode lua-mode json-mode jinja2-mode helm haml-mode grizzl go-mode git-gutter flycheck-pyflakes find-file-in-repository feature-mode expand-region es-mode erlang enh-ruby-mode dockerfile-mode debian-changelog-mode cython-mode ag ac-js2))
  '(show-paren-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   '((20 . "#f36c60")
+     (40 . "#ff9800")
+     (60 . "#fff59d")
+     (80 . "#8bc34a")
+     (100 . "#81d4fa")
+     (120 . "#4dd0e1")
+     (140 . "#b39ddb")
+     (160 . "#f36c60")
+     (180 . "#ff9800")
+     (200 . "#fff59d")
+     (220 . "#8bc34a")
+     (240 . "#81d4fa")
+     (260 . "#4dd0e1")
+     (280 . "#b39ddb")
+     (300 . "#f36c60")
+     (320 . "#ff9800")
+     (340 . "#fff59d")
+     (360 . "#8bc34a")))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 108 :width normal)))))
+ '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 162 :width normal)))))
